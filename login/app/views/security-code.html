@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column">
+        <h1 class="govuk-heading-l">Sign in to Bichard7</h1>
+        <p class="govuk-body">We have sent a security code by email to: <b>email@address.com</b></p>
+        <p class="govuk-body">The code will expire in 30 minutes.</p>
+        <form method="post" action="/security-code" autocomplete="on" novalidate>
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="securityCode">Security Code</label>
+                <p class="govuk-body">
+                    Enter the security code we emailed you.
+                </p>
+                {% if (data['security-code'] == "") %}
+                <div class="govuk-error-message govuk-!-font-weight-regular">
+                    Enter a security code.
+                </div>
+                {% endif %}
+                <input class="govuk-input govuk-!-width-one-half" id="securityCode" name="securityCode" type="number"
+                       autocomplete="securityCode">
+            </div>
+            <div class="govuk-form-group">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="skip" name="skip" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label" for="skip">
+                        Skip using a security code next time
+                    </label>
+                </div>
+                <p class="govuk-body govuk-!-padding-top-2">
+                    Do not select this option if you are on a public or shared device.
+                </p>
+            </div>
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Sign in
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

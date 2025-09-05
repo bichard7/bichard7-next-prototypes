@@ -1,0 +1,8 @@
+{
+  "serviceName": "Ministry of Justice Bichard7",
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}
