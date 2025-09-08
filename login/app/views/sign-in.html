@@ -6,17 +6,26 @@ GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
 
 {% block content %}
 
-<div class="govuk-grid-row">
+    <div class="govuk-grid-row">
+        <div class="govuk-phase-banner">
+            <p class="govuk-phase-banner__content">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    Beta
+                </strong>
+                <span class="govuk-phase-banner__text">
+                    This is a new service - your <a class="govuk-link" href="/feedback" rel="noreferrer noopener" target="_blank">feedback</a> will help us improve it (opens in new window)
+                </span>
+            </p>
+    </div>
+
     <div class="govuk-grid-column">
         <h1 class="govuk-heading-l">Sign in to Bichard7</h1>
-        <p class="govuk-body">Signing in to Bichard7 requires an account email address, password and security code.</p>
-        <p class="govuk-body">If you don't know your account email address, contact your user manager.</p>
+        <p class="govuk-body">To log in you need a security code, as well as, your Bichard7 account email address and password.</p>
+        <p class="govuk-body">Enter your email address and password to receive a security code by email.</p>
         <form method="post" action="/sign-in" autocomplete="on" novalidate>
             <div class="govuk-form-group">
                 <label class="govuk-label govuk-!-font-weight-bold" for="email">Email address</label>
-                <p class="govuk-body">
-                    Enter your Bichard7 email address to receive by email a security code to log in.
-                </p>
+                <div id="email-hint" class="govuk-hint">Enter your Bichard7 account email address</div>
                 {% if (data['email'] == "" or emailInvalid) %}
                 <div class="govuk-error-message govuk-!-font-weight-regular">
                     Enter an email address in the correct format, like name@example.com
@@ -29,13 +38,10 @@ GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
                 <label class="govuk-label govuk-!-font-weight-bold" for="password-input">
                     Password
                 </label>
-                <p class="govuk-body">
-                    Enter the password for your Bichard7 account.
-                </p>
-                {% if (data['password'] == "") %}
+                <p id="password-hint" class="govuk-hint">Enter the password for your Bichard7 account.</p>
+                {% if (incorrect) %}
                 <div class="govuk-error-message govuk-!-font-weight-regular">
                     Password is incorrect.<br>
-                    Try again or <a href="#">reset your password</a>
                 </div>
                 {% endif %}
                 <div class="govuk-input__wrapper govuk-password-input__wrapper">
@@ -49,10 +55,18 @@ GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
                     </button>
                 </div>
             </div>
+            <p class="govuk-body">
+                <a href="/reset-password" class="govuk-link govuk-link--no-underline">Forgotten password</a>
+            </p>
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue
             </button>
         </form>
+        <p class="govuk-body">
+                <a href="/help" class="govuk-link govuk-link--no-underline govuk-!-font-weight-bold" rel="noreferrer noopener" target="_blank">
+                        Get help with this page (new window)
+                </a>
+            </p>
     </div>
 </div>
 

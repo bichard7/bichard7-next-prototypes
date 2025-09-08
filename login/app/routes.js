@@ -11,10 +11,14 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.post('/sign-in', function (request, response) {
     const {email, password} = request.body;
     const emailValid = email.indexOf("@") > -1;
-    if (email && emailValid && password) {
+    const correctEmail = "test@mail.com"
+    const correctPassword = "password"
+    const correctDetails = email === correctEmail && password == correctPassword
+
+    if (correctDetails) {
         return response.redirect("/security-code")
     }
-    return response.render("/sign-in", {emailInvalid: !emailValid});
+    return response.render("/sign-in", {emailInvalid: !emailValid, incorrect: true});
 })
 
 router.post('/security-code', function (request, response) {
