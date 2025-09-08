@@ -9,5 +9,6 @@ run:
   env:
     - name: NODE_ENV
       value: "production"
+  secrets:
     - name: PASSWORD
-      value: "arn:aws:ssm:eu-west-2:258361008057:parameter/prototypes_password"
+      value-from: "arn:aws:ssm:eu-west-2:258361008057:parameter/prototypes_password"
