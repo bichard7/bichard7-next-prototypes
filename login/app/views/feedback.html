@@ -30,13 +30,10 @@
           {% endif %}
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input
-                class="govuk-radios__input"
-                id="satisfactionRating"
-                name="satisfactionRating"
-                type="radio"
-                value="very-satisfied"
-              />
+              <input class="govuk-radios__input" id="satisfactionRating"
+              name="satisfactionRating" type="radio" value="very-satisfied" {%
+              if data['satisfactionRating'] == "very-satisfied" %}checked{%
+              endif %}>
               <label
                 class="govuk-label govuk-radios__label"
                 for="satisfactionRating"
@@ -45,13 +42,9 @@
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input
-                class="govuk-radios__input"
-                id="satisfactionRating-2"
-                name="satisfactionRating"
-                type="radio"
-                value="satisfied"
-              />
+              <input class="govuk-radios__input" id="satisfactionRating-2"
+              name="satisfactionRating" type="radio" value="satisfied" {% if
+              data['satisfactionRating'] == "satisfied" %}checked{% endif %}>
               <label
                 class="govuk-label govuk-radios__label"
                 for="satisfactionRating-2"
@@ -60,13 +53,11 @@
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input
-                class="govuk-radios__input"
-                id="satisfactionRating-3"
-                name="satisfactionRating"
-                type="radio"
-                value="neither-satisfied-or-dissatisfied"
-              />
+              <input class="govuk-radios__input" id="satisfactionRating-3"
+              name="satisfactionRating" type="radio"
+              value="neither-satisfied-or-dissatisfied" {% if
+              data['satisfactionRating'] == "neither-satisfied-or-dissatisfied"
+              %}checked{% endif %}>
               <label
                 class="govuk-label govuk-radios__label"
                 for="satisfactionRating-3"
@@ -75,13 +66,9 @@
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input
-                class="govuk-radios__input"
-                id="satisfactionRating-4"
-                name="satisfactionRating"
-                type="radio"
-                value="dissatisfied"
-              />
+              <input class="govuk-radios__input" id="satisfactionRating-4"
+              name="satisfactionRating" type="radio" value="dissatisfied" {% if
+              data['satisfactionRating'] == "dissatisfied" %}checked{% endif %}>
               <label
                 class="govuk-label govuk-radios__label"
                 for="satisfactionRating-4"
@@ -90,13 +77,10 @@
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input
-                class="govuk-radios__input"
-                id="satisfactionRating-5"
-                name="satisfactionRating"
-                type="radio"
-                value="very-satisfied"
-              />
+              <input class="govuk-radios__input" id="satisfactionRating-5"
+              name="satisfactionRating" type="radio" value="very-dissatisfied"
+              {% if data['satisfactionRating'] == "very-dissatisfied"
+              %}checked{% endif %}>
               <label
                 class="govuk-label govuk-radios__label"
                 for="satisfactionRating-5"
@@ -130,7 +114,9 @@
           id="improvementSuggestion"
           name="improvementSuggestion"
           rows="5"
-        ></textarea>
+          value=
+        >{{ data['improvementSuggestion']}}
+        </textarea>
       </div>
       {{ govukButton({ text: "Submit" }) }}
     </form>
