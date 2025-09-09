@@ -33,10 +33,14 @@ router.post("/security-code", function (request, response) {
   return response.render("/security-code", { incorrectSecurityCode: true });
 });
 
-router.post("/feedback-response", function (request, response) {
+router.post("/feedback", function (request, response) {
   const satisfactionRating = request.body.satisfactionRating;
-  if (!satisfactionRating) {
-    return response.render("/feedback", { radioEmpty: true });
+  const improvementSuggestion = request.body.improvementSuggestion;
+  isRadioEmpty = !satisfactionRating;
+  isSuggestionEmpty = improvementSuggestion === "";
+
+  if (isRadioEmpty || isSuggestionEmpty) {
+    return response.render("/feedback", { isRadioEmpty, isSuggestionEmpty });
   }
   return response.redirect("/welcome");
 });
