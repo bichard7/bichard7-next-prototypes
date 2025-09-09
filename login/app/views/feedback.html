@@ -1,0 +1,116 @@
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent
+%} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Share your feedback</h1>
+    <p class="govuk-body">
+      Please tell us about your experience of using Bichard7.
+    </p>
+    <p class="govuk-body">
+      Your responses are anonymous and are used to make future improvements.
+    </p>
+    <p class="govuk-body">
+      We do not reply to feedback. If you need support with your account contact
+      your User Manager.
+    </p>
+    <form class="form" action="/feedback-response" method="post">
+      <div
+        class="govuk-form-group {% if radioEmpty %}govuk-form-group--error{% endif %}"
+      >
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+            Overall, how did you feel about using Bichard7 today?
+          </legend>
+          {% if radioEmpty %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Select one option
+          </p>
+          {% endif %}
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="satisfactionRating"
+                name="satisfactionRating"
+                type="radio"
+                value="very-satisfied"
+              />
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating"
+              >
+                Very satisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="satisfactionRating-2"
+                name="satisfactionRating"
+                type="radio"
+                value="satisfied"
+              />
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-2"
+              >
+                Satisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="satisfactionRating-3"
+                name="satisfactionRating"
+                type="radio"
+                value="neither-satisfied-or-dissatisfied"
+              />
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-3"
+              >
+                Neither satisfied or dissatisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="satisfactionRating-4"
+                name="satisfactionRating"
+                type="radio"
+                value="dissatisfied"
+              />
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-4"
+              >
+                Dissatisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="satisfactionRating-5"
+                name="satisfactionRating"
+                type="radio"
+                value="very-satisfied"
+              />
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-5"
+              >
+                Very dissatisfied
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      {{ govukButton({ text: "Submit" }) }}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

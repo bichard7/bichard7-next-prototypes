@@ -32,3 +32,11 @@ router.post("/security-code", function (request, response) {
   }
   return response.render("/security-code", { incorrectSecurityCode: true });
 });
+
+router.post("/feedback-response", function (request, response) {
+  const satisfactionRating = request.body.satisfactionRating;
+  if (!satisfactionRating) {
+    return response.render("/feedback", { radioEmpty: true });
+  }
+  return response.redirect("/welcome");
+});
