@@ -18,13 +18,14 @@ router.post('/sign-in', function (request, response) {
     if (correctDetails) {
         return response.redirect("/security-code")
     }
-    return response.render("/sign-in", {emailInvalid: !emailValid, incorrect: true});
+    return response.render("/sign-in", {emailInvalid: !emailValid, incorrectLoginDetails: true});
 })
 
 router.post('/security-code', function (request, response) {
+    const correctSecurityCode = "1234"
     const {securityCode} = request.body;
-    if (securityCode) {
-        return response.redirect("/sign-in")
+    if (securityCode === correctSecurityCode) {
+        return response.redirect("/home")
     }
-    response.redirect("/security-code")
+    return response.render("/security-code", {incorrectSecurityCode: true});
 })
