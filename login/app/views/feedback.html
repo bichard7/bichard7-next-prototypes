@@ -92,7 +92,9 @@
         </fieldset>
       </div>
       <div
-        class="govuk-form-group {% if isSuggestionEmpty %}govuk-form-group--error{% endif %}"
+        class="govuk-form-group govuk-character-count {% if isSuggestionEmpty %}govuk-form-group--error{% endif %}"
+        data-module="govuk-character-count"
+        data-maxwords="150"
       >
         <label
           class="govuk-label govuk-!-font-weight-bold"
@@ -100,24 +102,37 @@
         >
           How can we improve Bichard7?
         </label>
-        <div id="more-detail-hint" class="govuk-hint">
+
+        <div id="improvementSuggestion-hint" class="govuk-hint">
           Do not include any personal or case information, for example your
           name, email address, force or case details
         </div>
+
         {% if isSuggestionEmpty %}
-        <p id="whereDoYouLive-error" class="govuk-error-message">
-          <span class="govuk-visually-hidden">Error:</span> Mandatory field
+        <p id="improvementSuggestion-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter your
+          suggestions
         </p>
         {% endif %}
+
         <textarea
-          class="govuk-textarea"
+          class="govuk-textarea govuk-js-character-count"
           id="improvementSuggestion"
           name="improvementSuggestion"
           rows="5"
-          value=
-        >{{ data['improvementSuggestion']}}
-        </textarea>
+          aria-describedby="improvementSuggestion-hint improvementSuggestion-info"
+        >
+{{ data['improvementSuggestion'] | escape }}</textarea
+        >
+
+        <div
+          id="improvementSuggestion-info"
+          class="govuk-hint govuk-character-count__message"
+        >
+          You can enter up to 150 words
+        </div>
       </div>
+
       {{ govukButton({ text: "Submit" }) }}
     </form>
     <p class="govuk-body">
