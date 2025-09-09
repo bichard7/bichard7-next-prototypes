@@ -28,6 +28,7 @@ router.post("/security-code", function (request, response) {
   const correctSecurityCode = "1234";
   const { securityCode } = request.body;
   if (securityCode === correctSecurityCode) {
+    request.session.data.isLoggedIn = true;
     return response.redirect("/welcome");
   }
   return response.render("/security-code", { incorrectSecurityCode: true });
@@ -42,5 +43,9 @@ router.post("/feedback", function (request, response) {
   if (isRadioEmpty || isSuggestionEmpty) {
     return response.render("/feedback", { isRadioEmpty, isSuggestionEmpty });
   }
-  return response.redirect("/welcome");
+  const isLoggedIn = request.session.data.isLoggedIn;
+  if (isLoggedIn) {
+    return response.redirect("/welcome");
+  }
+  return response.redirect("/sign-in");
 });
