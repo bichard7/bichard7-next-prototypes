@@ -53,3 +53,37 @@ router.post("/feedback-confirmation", function (request, response) {
   }
   return response.redirect("/sign-in");
 });
+
+router.post("/feedback-confirmation", function (request, response) {
+  const isLoggedIn = request.session.data.isLoggedIn;
+  if (isLoggedIn) {
+    return response.redirect("/welcome");
+  }
+  return response.redirect("/sign-in");
+});
+
+router.post("/reset-password", function (request, response) {
+  const email = request.body.resetPasswordEmail;
+  const emailValid = email.indexOf("@") > -1;
+  if (emailValid) {
+    return response.redirect("/reset-password-enter-security-code");
+  }
+  return response.render("reset-password", {
+    resetPasswordEmailInvalid: true,
+  });
+});
+
+router.post(
+  "/reset-password-enter-security-code",
+  function (request, response) {
+    const resetPasswordSecurityCode = request.body.resetPasswordSecurityCode;
+    const correctResetPaswordSecurityCode = "5678";
+
+    if (resetPasswordSecurityCode === correctResetPaswordSecurityCode) {
+      return response.redirect("/reset-password-new-password");
+    }
+    return response.render("reset-password-enter-security-code", {
+      resetPasswordIncorrectSecurityCode: resetPasswordSecurityCode != "",
+    });
+  }
+);
