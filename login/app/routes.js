@@ -43,10 +43,6 @@ router.post("/feedback", function (request, response) {
   if (isRadioEmpty || isSuggestionEmpty) {
     return response.render("/feedback", { isRadioEmpty, isSuggestionEmpty });
   }
-  const isLoggedIn = request.session.data.isLoggedIn;
-  if (isLoggedIn) {
-    return response.redirect("/welcome");
-  }
   return response.redirect("/feedback-confirmation");
 });
 
