@@ -28,7 +28,32 @@ router.post("/security-code", function (request, response) {
   const correctSecurityCode = "1234";
   const { securityCode } = request.body;
   if (securityCode === correctSecurityCode) {
+    request.session.data.isLoggedIn = true;
     return response.redirect("/welcome");
   }
   return response.render("/security-code", { incorrectSecurityCode: true });
+});
+
+router.post("/feedback", function (request, response) {
+  const satisfactionRating = request.body.satisfactionRating;
+  const improvementSuggestion = request.body.improvementSuggestion;
+  isRadioEmpty = !satisfactionRating;
+  isSuggestionEmpty = improvementSuggestion === "";
+
+  if (isRadioEmpty || isSuggestionEmpty) {
+    return response.render("/feedback", { isRadioEmpty, isSuggestionEmpty });
+  }
+  const isLoggedIn = request.session.data.isLoggedIn;
+  if (isLoggedIn) {
+    return response.redirect("/welcome");
+  }
+  return response.redirect("/feedback-confirmation");
+});
+
+router.post("/feedback-confirmation", function (request, response) {
+  const isLoggedIn = request.session.data.isLoggedIn;
+  if (isLoggedIn) {
+    return response.redirect("/welcome");
+  }
+  return response.redirect("/sign-in");
 });

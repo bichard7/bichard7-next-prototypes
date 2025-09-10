@@ -1,0 +1,151 @@
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent
+%} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column">
+    <h1 class="govuk-heading-l">Share your feedback</h1>
+    <p class="govuk-body">
+      Please tell us about your experience of using Bichard7.
+    </p>
+    <p class="govuk-body">
+      Your responses are anonymous and are used to make future improvements.
+    </p>
+    <p class="govuk-body">
+      We do not reply to feedback. If you need support with your account contact
+      your User Manager.
+    </p>
+    <form class="form" action="/feedback" method="post">
+      <div
+        class="govuk-form-group {% if isRadioEmpty %}govuk-form-group--error{% endif %}"
+      >
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+            Overall, how did you feel about using Bichard7 today?
+          </legend>
+          {% if isRadioEmpty %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Select one option
+          </p>
+          {% endif %}
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="satisfactionRating"
+              name="satisfactionRating" type="radio" value="very-satisfied" {%
+              if data['satisfactionRating'] == "very-satisfied" %}checked{%
+              endif %}>
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating"
+              >
+                Very satisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="satisfactionRating-2"
+              name="satisfactionRating" type="radio" value="satisfied" {% if
+              data['satisfactionRating'] == "satisfied" %}checked{% endif %}>
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-2"
+              >
+                Satisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="satisfactionRating-3"
+              name="satisfactionRating" type="radio"
+              value="neither-satisfied-or-dissatisfied" {% if
+              data['satisfactionRating'] == "neither-satisfied-or-dissatisfied"
+              %}checked{% endif %}>
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-3"
+              >
+                Neither satisfied or dissatisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="satisfactionRating-4"
+              name="satisfactionRating" type="radio" value="dissatisfied" {% if
+              data['satisfactionRating'] == "dissatisfied" %}checked{% endif %}>
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-4"
+              >
+                Dissatisfied
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="satisfactionRating-5"
+              name="satisfactionRating" type="radio" value="very-dissatisfied"
+              {% if data['satisfactionRating'] == "very-dissatisfied"
+              %}checked{% endif %}>
+              <label
+                class="govuk-label govuk-radios__label"
+                for="satisfactionRating-5"
+              >
+                Very dissatisfied
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div
+        class="govuk-form-group govuk-character-count {% if isSuggestionEmpty %}govuk-form-group--error{% endif %}"
+        data-module="govuk-character-count"
+        data-maxwords="150"
+      >
+        <label
+          class="govuk-label govuk-!-font-weight-bold"
+          for="improvementSuggestion"
+        >
+          How can we improve Bichard7?
+        </label>
+
+        <div id="improvementSuggestion-hint" class="govuk-hint">
+          Do not include any personal or case information, for example your
+          name, email address, force or case details
+        </div>
+
+        {% if isSuggestionEmpty %}
+        <p id="improvementSuggestion-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter your
+          suggestions
+        </p>
+        {% endif %}
+
+        <textarea
+          class="govuk-textarea govuk-js-character-count"
+          id="improvementSuggestion"
+          name="improvementSuggestion"
+          rows="5"
+          aria-describedby="improvementSuggestion-hint improvementSuggestion-info"
+        >
+{{ data['improvementSuggestion'] | escape }}</textarea
+        >
+
+        <div
+          id="improvementSuggestion-info"
+          class="govuk-hint govuk-character-count__message"
+        >
+          You can enter up to 150 words
+        </div>
+      </div>
+
+      {{ govukButton({ text: "Submit" }) }}
+    </form>
+    <p class="govuk-body">
+      <a
+        href="/help"
+        class="govuk-link govuk-link--no-underline govuk-!-font-weight-bold"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Get help with this page (new window)
+      </a>
+    </p>
+  </div>
+</div>
+
+{% endblock %}
