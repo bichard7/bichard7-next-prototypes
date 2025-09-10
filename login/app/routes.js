@@ -47,5 +47,13 @@ router.post("/feedback", function (request, response) {
   if (isLoggedIn) {
     return response.redirect("/welcome");
   }
+  return response.redirect("/feedback-confirmation");
+});
+
+router.post("/feedback-confirmation", function (request, response) {
+  const isLoggedIn = request.session.data.isLoggedIn;
+  if (isLoggedIn) {
+    return response.redirect("/welcome");
+  }
   return response.redirect("/sign-in");
 });
