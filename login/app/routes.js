@@ -87,3 +87,15 @@ router.post(
     });
   }
 );
+
+router.post("/reset-password-new-password", function (request, response) {
+  const newPassword = request.body.newPassword;
+  const confirmPAssword = request.body.confirmPassword;
+  const isMatch = newPassword === confirmPAssword;
+  const isNotEmpty = newPassword != "";
+
+  if (isNotEmpty && isMatch) {
+    return response.redirect("/reset-password-confirmation");
+  }
+  return response.render("reset-password-new-password");
+});
