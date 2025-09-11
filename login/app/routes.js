@@ -99,3 +99,7 @@ router.post("/reset-password-new-password", function (request, response) {
   }
   return response.render("reset-password-new-password");
 });
+
+router.post("/reset-password-confirmation", function (request, response) {
+  return response.redirect("/sign-in");
+});
