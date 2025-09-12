@@ -19,29 +19,51 @@
     </p>
   </div>
   <div class="govuk-grid-column">
+    {%set isError = incorrectSecurityCode or data["securityCode"] == ""%} {%if
+    isError%}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            {%if (data['securityCode'] == "")%}
+            <li>
+              <a href="#securityCode">Enter a security code </a>
+            </li>
+            {%endif%} {%if incorrectSecurityCode and not (data['securityCode']
+            == "")%}
+            <li>
+              <a href="#securityCode">Incorrect security code</a>
+            </li>
+            {%endif%}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {%endif%}
+
     <h1 class="govuk-heading-l">Sign in to Bichard7</h1>
     <p class="govuk-body">
       We have sent a security code by email to: <b>test@mail.com</b>
     </p>
     <p class="govuk-body">The code will expire in 30 minutes.</p>
     <form method="post" action="/security-code" autocomplete="on" novalidate>
-      <div class="govuk-form-group">
+      <div
+        class="govuk-form-group {%if isError%}govuk-form-group--error{%endif%}"
+      >
         <label class="govuk-label govuk-!-font-weight-bold" for="securityCode"
           >Security Code</label
         >
         <p class="govuk-body">Enter the security code we emailed you.</p>
-        {% if (data['securityCode'] == "") %}
-        <div class="govuk-error-message govuk-!-font-weight-regular">
-          Enter a security code.
-        </div>
-        {% endif %} {% if incorrectSecurityCode %}
-        <div class="govuk-error-message govuk-!-font-weight-regular">
-          Security code is incorrect.
-        </div>
+        {% if (data['securityCode'] == "")%}
+        <div class="govuk-error-message">Enter a security code.</div>
+        {% endif %} {% if incorrectSecurityCode and not (data['securityCode'] ==
+        "") %}
+        <div class="govuk-error-message">Security code is incorrect.</div>
         {% endif %}
 
         <input
-          class="govuk-input govuk-!-width-one-half"
+          class="govuk-input govuk-!-width-one-half {%if isError%}govuk-input govuk-input--error{%endif%}"
           id="securityCode"
           name="securityCode"
           type="number"
