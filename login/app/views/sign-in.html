@@ -28,20 +28,31 @@
       Enter your email address and password to receive a security code by email.
     </p>
     <form method="post" action="/sign-in" autocomplete="on" novalidate>
-      <div class="govuk-form-group">
+      {%set onlyPasswordEmpty = data["email"] != "" and data["password"] == ""
+      %} {%set onlyEmailEmpty = data["email"] == "" and data["password"] != ""
+      %} {%set emailInvalidNotEmpty = emailInvalid and (data["email"] != "")%}
+      {%set emailError = emailInvalid or incorrectLoginDetails and not
+      onlyPasswordEmpty%} {%set passwordError = (incorrectLoginDetails or
+      data["password"] == "") and not onlyEmailEmpty and not
+      emailInvalidNotEmpty%}
+      <div
+        class="govuk-form-group {%if emailError%}govuk-form-group--error{%endif%}"
+      >
         <label class="govuk-label govuk-!-font-weight-bold" for="email"
           >Email address</label
         >
         <div id="email-hint" class="govuk-hint">
           Enter your Bichard7 account email address
         </div>
-        {% if (data['email'] == "" or emailInvalid) %}
-        <div class="govuk-error-message govuk-!-font-weight-regular">
+        {% if emailInvalid and not data["email"]==""%}
+        <div class="govuk-error-message">
           Enter an email address in the correct format, like name@example.com
         </div>
+        {% endif %} {%if emailError and not emailInvalidNotEmpty%}
+        <div class="govuk-error-message">Enter your email address</div>
         {% endif %}
         <input
-          class="govuk-input govuk-!-width-one-half"
+          class="govuk-input govuk-!-width-one-half {%if emailError%}govuk-input govuk-input--error{%endif%}"
           id="email"
           name="email"
           type="email"
@@ -49,7 +60,7 @@
         />
       </div>
       <div
-        class="govuk-form-group govuk-password-input"
+        class="govuk-form-group govuk-password-input {%if passwordError%}govuk-form-group--error{%endif%}"
         data-module="govuk-password-input"
       >
         <label
@@ -61,14 +72,12 @@
         <p id="password-hint" class="govuk-hint">
           Enter the password for your Bichard7 account.
         </p>
-        {% if (incorrectLoginDetails) %}
-        <div class="govuk-error-message govuk-!-font-weight-regular">
-          Password is incorrect.<br />
-        </div>
+        {% if passwordError %}
+        <div class="govuk-error-message">Enter a password<br /></div>
         {% endif %}
         <div class="govuk-input__wrapper govuk-password-input__wrapper">
           <input
-            class="govuk-input govuk-!-width-one-half govuk-password-input__input govuk-js-password-input-input"
+            class="govuk-input govuk-!-width-one-half govuk-password-input__input govuk-js-password-input-input {%if passwordError%}govuk-input govuk-input--error{%endif%}"
             id="password-input"
             name="password"
             type="password"
