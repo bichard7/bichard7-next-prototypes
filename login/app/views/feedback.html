@@ -15,6 +15,28 @@
       We do not reply to feedback. If you need support with your account contact
       your User Manager.
     </p>
+    {%set isError = isRadioEmpty or isSuggestionEmpty%} {%if isError%}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            {%if isRadioEmpty%}
+            <li>
+              <a href="#satisfactionRating"
+                >Tell us how you feel about using Bichard7
+              </a>
+            </li>
+            {%endif%} {%if isSuggestionEmpty%}
+            <li>
+              <a href="#improvementSuggestion">Provide feedback </a>
+            </li>
+            {%endif%}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {%endif%}
     <form class="form" action="/feedback" method="post">
       <div
         class="govuk-form-group {% if isRadioEmpty %}govuk-form-group--error{% endif %}"
@@ -24,7 +46,7 @@
             Overall, how did you feel about using Bichard7 today?
           </legend>
           {% if isRadioEmpty %}
-          <p id="whereDoYouLive-error" class="govuk-error-message">
+          <p id="radioEmpty-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error:</span> Select one option
           </p>
           {% endif %}
