@@ -54,14 +54,6 @@ router.post("/feedback-confirmation", function (request, response) {
   return response.redirect("/sign-in");
 });
 
-router.post("/feedback-confirmation", function (request, response) {
-  const isLoggedIn = request.session.data.isLoggedIn;
-  if (isLoggedIn) {
-    return response.redirect("/welcome");
-  }
-  return response.redirect("/sign-in");
-});
-
 router.post("/reset-password", function (request, response) {
   const email = request.body.resetPasswordEmail;
   const emailValid = email.indexOf("@") > -1;
