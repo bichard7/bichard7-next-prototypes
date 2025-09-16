@@ -19,6 +19,45 @@
     </p>
   </div>
   <div class="govuk-grid-column">
+    {%set onlyPasswordEmpty = data["email"] != "" and data["password"] == "" %}
+    {%set onlyEmailEmpty = data["email"] == "" and data["password"] != "" %}
+    {%set emailInvalidNotEmpty = emailInvalid and (data["email"] != "")%} {%set
+    validIncorrectLogin = incorrectLoginDetails and not emailInvalid and not
+    data["password"] == ""%} {%set emailError = emailInvalid and not
+    onlyPasswordEmpty%} {%set passwordError = (data["password"] == "") and not
+    onlyEmailEmpty and not emailInvalidNotEmpty%} {%set error = emailError or
+    passwordError or incorrectLoginDetails%} {%if error%}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            {%if incorrectLoginDetails and not (data["email"] == "") and not
+            (data["password"] == "") and not emailInvalidNotEmpty%}
+            <li>
+              <a href="#email">Incorrect email address or password </a>
+            </li>
+            {%endif%} {%if emailError and not emailInvalidNotEmpty%}
+            <li>
+              <a href="#email">Enter your email address</a>
+            </li>
+            {%endif%} {%if passwordError%}
+            <li>
+              <a href="#password-input">Enter a password </a>
+            </li>
+            {%endif%} {%if emailInvalid and not data["email"]==""%}
+            <li>
+              <a href="#email"
+                >Enter an email address in the correct format, for example
+                name@example.com
+              </a>
+            </li>
+            {%endif%}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {%endif%}
     <h1 class="govuk-heading-l">Sign in to Bichard7</h1>
     <p class="govuk-body">
       To log in you need a security code, as well as, your Bichard7 account
@@ -28,15 +67,8 @@
       Enter your email address and password to receive a security code by email.
     </p>
     <form method="post" action="/sign-in" autocomplete="on" novalidate>
-      {%set onlyPasswordEmpty = data["email"] != "" and data["password"] == ""
-      %} {%set onlyEmailEmpty = data["email"] == "" and data["password"] != ""
-      %} {%set emailInvalidNotEmpty = emailInvalid and (data["email"] != "")%}
-      {%set emailError = emailInvalid or incorrectLoginDetails and not
-      onlyPasswordEmpty%} {%set passwordError = (incorrectLoginDetails or
-      data["password"] == "") and not onlyEmailEmpty and not
-      emailInvalidNotEmpty%}
       <div
-        class="govuk-form-group {%if emailError%}govuk-form-group--error{%endif%}"
+        class="govuk-form-group {%if emailError or validIncorrectLogin%}govuk-form-group--error{%endif%}"
       >
         <label class="govuk-label govuk-!-font-weight-bold" for="email"
           >Email address</label
@@ -50,7 +82,12 @@
         </div>
         {% endif %} {%if emailError and not emailInvalidNotEmpty%}
         <div class="govuk-error-message">Enter your email address</div>
-        {% endif %}
+        {% endif %} {%if incorrectLoginDetails and not (data["email"] == "") and
+        not (data["password"] == "") and not emailInvalidNotEmpty%}
+        <div class="govuk-error-message">
+          Incorrect email address or password
+        </div>
+        {%endif%}
         <input
           class="govuk-input govuk-!-width-one-half {%if emailError%}govuk-input govuk-input--error{%endif%}"
           id="email"
@@ -60,7 +97,7 @@
         />
       </div>
       <div
-        class="govuk-form-group govuk-password-input {%if passwordError%}govuk-form-group--error{%endif%}"
+        class="govuk-form-group govuk-password-input {%if passwordError or validIncorrectLogin%}govuk-form-group--error{%endif%}"
         data-module="govuk-password-input"
       >
         <label
@@ -74,7 +111,12 @@
         </p>
         {% if passwordError %}
         <div class="govuk-error-message">Enter a password<br /></div>
-        {% endif %}
+        {% endif %} {%if incorrectLoginDetails and not (data["email"] == "") and
+        not (data["password"] == "") and not emailInvalidNotEmpty%}
+        <div class="govuk-error-message">
+          Incorrect email address or password
+        </div>
+        {%endif%}
         <div class="govuk-input__wrapper govuk-password-input__wrapper">
           <input
             class="govuk-input govuk-!-width-one-half govuk-password-input__input govuk-js-password-input-input {%if passwordError%}govuk-input govuk-input--error{%endif%}"
