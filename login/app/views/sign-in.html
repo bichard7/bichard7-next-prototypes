@@ -60,11 +60,15 @@
     {%endif%}
     <h1 class="govuk-heading-l">Sign in to Bichard7</h1>
     <p class="govuk-body">
-      To log in you need a security code, as well as, your Bichard7 account
-      email address and password.
+      Sign in using your Bichard7 account email address and password.
     </p>
     <p class="govuk-body">
-      Enter your email address and password to receive a security code by email.
+      Your User Manager can help if you do not know your Bichard7 account email
+      address.
+    </p>
+    <p class="govuk-body">
+      If your account is recognised you will receive a security code by email to
+      complete the sign in process.
     </p>
     <form method="post" action="/sign-in" autocomplete="on" novalidate>
       <div
@@ -106,9 +110,7 @@
         >
           Password
         </label>
-        <p id="password-hint" class="govuk-hint">
-          Enter the password for your Bichard7 account.
-        </p>
+        <p id="password-hint" class="govuk-hint">Enter your password</p>
         {% if passwordError %}
         <div class="govuk-error-message">Enter a password<br /></div>
         {% endif %} {%if incorrectLoginDetails and not (data["email"] == "") and
