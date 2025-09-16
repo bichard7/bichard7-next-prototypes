@@ -6,14 +6,22 @@
   <div class="govuk-grid-column">
     <h1 class="govuk-heading-l">Share your feedback</h1>
     <p class="govuk-body">
-      Please tell us about your experience of using Bichard7.
+      Tell us about your experience of using Bichard7 to help us improve the
+      service.
     </p>
     <p class="govuk-body">
       Your responses are anonymous and are used to make future improvements.
     </p>
     <p class="govuk-body">
       We do not reply to feedback. If you need support with your account contact
-      your User Manager.
+      your User Manager or use our
+      <a
+        class="govuk-link"
+        href="/help"
+        rel="noreferrer noopener"
+        target="_blank"
+        >help guide.</a
+      >
     </p>
     {%set isError = isRadioEmpty or isSuggestionEmpty%} {%if isError%}
     <div class="govuk-error-summary" data-module="govuk-error-summary">
@@ -45,6 +53,7 @@
           <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
             Overall, how did you feel about using Bichard7 today?
           </legend>
+          <div id="email-hint" class="govuk-hint">Select one</div>
           {% if isRadioEmpty %}
           <p id="radioEmpty-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error:</span> Select one option
@@ -122,7 +131,7 @@
           class="govuk-label govuk-!-font-weight-bold"
           for="improvementSuggestion"
         >
-          How can we improve Bichard7?
+          Tell us how we can improve Bichard7
         </label>
 
         <div id="improvementSuggestion-hint" class="govuk-hint">
@@ -155,7 +164,7 @@
         </div>
       </div>
 
-      {{ govukButton({ text: "Submit" }) }}
+      {{ govukButton({ text: "Send feedback" }) }}
     </form>
     <p class="govuk-body">
       <a
