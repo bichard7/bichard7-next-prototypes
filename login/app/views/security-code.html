@@ -2,6 +2,7 @@
 {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
+  <a href="/sign-in" class="govuk-back-link">Back</a>
   <div class="govuk-phase-banner govuk-!-margin-bottom-5">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag"> Beta </strong>
@@ -41,11 +42,15 @@
     </div>
     {%endif%}
 
-    <h1 class="govuk-heading-l">Sign in to Bichard7</h1>
+    <h1 class="govuk-heading-l">Security code</h1>
     <p class="govuk-body">
-      We have sent a security code by email to: <b>test@mail.com</b>
+      We have sent a one-time security code to:
+      <b>Firstname.surname@force.co.uk</b>
     </p>
-    <p class="govuk-body">The code will expire in 30 minutes.</p>
+    <p class="govuk-body">
+      If you haven't received a code check your spam folder or try logging in
+      again.
+    </p>
     <form method="post" action="/security-code" autocomplete="on" novalidate>
       <div
         class="govuk-form-group {%if isError%}govuk-form-group--error{%endif%}"
@@ -53,7 +58,7 @@
         <label class="govuk-label govuk-!-font-weight-bold" for="securityCode"
           >Security Code</label
         >
-        <p class="govuk-body">Enter the security code we emailed you.</p>
+        <p class="govuk-body">Enter the security code</p>
         {% if (data['securityCode'] == "")%}
         <div class="govuk-error-message">Enter a security code.</div>
         {% endif %} {% if incorrectSecurityCode and not (data['securityCode'] ==
@@ -69,6 +74,9 @@
           autocomplete="securityCode"
         />
       </div>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Sign in
+      </button>
       <div class="govuk-form-group">
         <div class="govuk-checkboxes__item">
           <input
@@ -78,7 +86,7 @@
             type="checkbox"
           />
           <label class="govuk-label govuk-checkboxes__label" for="skip">
-            Skip using a security code next time
+            I trust this device. Don't ask me for a code again today
           </label>
         </div>
         <div class="govuk-warning-text">
@@ -89,9 +97,6 @@
           </strong>
         </div>
       </div>
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Sign in
-      </button>
     </form>
     <p class="govuk-body">
       <a
