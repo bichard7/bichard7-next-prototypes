@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %} {% block pageTitle %} GOV.UK page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-phase-banner govuk-!-margin-bottom-7">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag"> Beta </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service -
+        <a
+          class="govuk-link"
+          href="/feedback"
+          rel="noreferrer noopener"
+          target="_blank"
+          >your feedback will help us improve it (opens in new tab)</a
+        >
+      </span>
+    </p>
+  </div>
+  <div class="govuk-grid-column">
+    <h1 class="govuk-heading-l">Help</h1>
+    <div class="govuk-body govuk-!-margin-bottom-7">
+      <h2 class="govuk-heading-m">Account issues</h2>
+      <p class="govuk-body">You User Manager can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>check and change the email address registered to your account</li>
+        <li>view and change the permissions on your account</li>
+        <li>set up new user accounts</li>
+        <li>delete user accounts</li>
+      </ul>
+    </div>
+    <div class="govuk-body govuk-!-margin-bottom-7">
+      <h2 class="govuk-heading-m">Changing your password</h2>
+      <p class="govuk-body">
+        You can change your password by following the
+        <a href="/reset-password">reset password process.</a>
+      </p>
+    </div>
+    <div class="govuk-body govuk-!-margin-bottom-7">
+      <h2 class="govuk-heading-m">Skipping getting a security code</h2>
+      <p class="govuk-body">
+        You can choose to sign in without a security code for up to 24 hours.
+        Tick the box on the security code page when you sign in.
+      </p>
+      <p class="govuk-body">
+        You should only skip getting a security code if you are working on a
+        trusted device.
+      </p>
+    </div>
+    <div class="govuk-body govuk-!-margin-bottom-7">
+      <h2 class="govuk-heading-m">Automatically signing out</h2>
+      <p class="govuk-body">
+        Bichard7 will sign you out if there is 30 minutes of no activity. You
+        need to sign in again to access Bichard 7.
+      </p>
+    </div>
+    <div class="govuk-body govuk-!-margin-bottom-7">
+      <h2 class="govuk-heading-m">Something else is not working</h2>
+      <p class="govuk-body">
+        Contact the <a href="#">Bichard7 support desk</a> to report something
+        not working correctly.
+      </p>
+    </div>
+
+    <p class="govuk-body">
+      <a
+        href="/help"
+        class="govuk-link govuk-link--no-underline govuk-!-font-weight-bold"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Get help with this page (new window)
+      </a>
+    </p>
+  </div>
+</div>
+
+{% endblock %}
