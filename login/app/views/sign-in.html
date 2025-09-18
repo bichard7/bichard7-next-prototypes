@@ -71,73 +71,73 @@
     </p>
     <form method="post" action="/sign-in" autocomplete="on" novalidate>
       <div
-        class="govuk-form-group {%if emailError or validIncorrectLogin%}govuk-form-group--error{%endif%}"
+        class="govuk-form-group {%if validIncorrectLogin%}govuk-form-group--error{%endif%}"
       >
-        <label class="govuk-label govuk-!-font-weight-bold" for="email"
-          >Email address</label
-        >
-        <div id="email-hint" class="govuk-hint">
-          Enter your Bichard7 account email address
-        </div>
-        {% if emailInvalid and not data["email"]==""%}
-        <div class="govuk-error-message">
-          Enter an email address in the correct format, like name@example.com
-        </div>
-        {% endif %} {%if emailError and not emailInvalidNotEmpty%}
-        <div class="govuk-error-message">Enter your email address</div>
-        {% endif %} {%if incorrectLoginDetails and not (data["email"] == "") and
-        not (data["password"] == "") and not emailInvalidNotEmpty%}
+        {%if validIncorrectLogin%}
         <div class="govuk-error-message">
           Incorrect email address or password
         </div>
-        {%endif%}
-        <input
-          class="govuk-input govuk-!-width-one-half {%if emailError%}govuk-input govuk-input--error{%endif%}"
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-        />
-      </div>
-      <div
-        class="govuk-form-group govuk-password-input {%if passwordError or validIncorrectLogin%}govuk-form-group--error{%endif%}"
-        data-module="govuk-password-input"
-      >
-        <label
-          class="govuk-label govuk-!-font-weight-bold"
-          for="password-input"
+        {%endif%} {%set emailErrorSign = emailError or validIncorrectLogin or
+        (emailInvalid and not data["email"]=="")%}
+        <div
+          class="govuk-form-group {%if emailErrorSign%}govuk-form-group--error{%endif%}"
         >
-          Password
-        </label>
-        <p id="password-hint" class="govuk-hint">Enter your password</p>
-        {% if passwordError %}
-        <div class="govuk-error-message">Enter a password<br /></div>
-        {% endif %} {%if incorrectLoginDetails and not (data["email"] == "") and
-        not (data["password"] == "") and not emailInvalidNotEmpty%}
-        <div class="govuk-error-message">
-          Incorrect email address or password
-        </div>
-        {%endif%}
-        <div class="govuk-input__wrapper govuk-password-input__wrapper">
-          <input
-            class="govuk-input govuk-!-width-one-half govuk-password-input__input govuk-js-password-input-input {%if passwordError%}govuk-input govuk-input--error{%endif%}"
-            id="password-input"
-            name="password"
-            type="password"
-            spellcheck="false"
-            autocomplete="current-password"
-            autocapitalize="none"
-          />
-          <button
-            type="button"
-            class="govuk-button govuk-button--secondary govuk-password-input__toggle govuk-js-password-input-toggle"
-            data-module="govuk-button"
-            aria-controls="password-input"
-            aria-label="Show password"
-            hidden
+          <label class="govuk-label govuk-!-font-weight-bold" for="email"
+            >Email address</label
           >
-            Show
-          </button>
+          <div id="email-hint" class="govuk-hint">
+            Enter your Bichard7 account email address
+          </div>
+          {% if emailInvalid and not data["email"]==""%}
+          <div class="govuk-error-message">
+            Enter an email address in the correct format, like name@example.com
+          </div>
+          {% endif %} {%if emailError and not emailInvalidNotEmpty%}
+          <div class="govuk-error-message">Enter your email address</div>
+          {% endif %}
+          <input
+            class="govuk-input govuk-!-width-one-half {%if emailError%}govuk-input govuk-input--error{%endif%}"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+          />
+        </div>
+        <div
+          class="govuk-form-group govuk-password-input {%if passwordError or validIncorrectLogin%}govuk-form-group--error{%endif%}"
+          data-module="govuk-password-input"
+        >
+          <label
+            class="govuk-label govuk-!-font-weight-bold"
+            for="password-input"
+          >
+            Password
+          </label>
+          <p id="password-hint" class="govuk-hint">Enter your password</p>
+          {% if passwordError %}
+          <div class="govuk-error-message">Enter a password<br /></div>
+          {% endif %}
+          <div class="govuk-input__wrapper govuk-password-input__wrapper">
+            <input
+              class="govuk-input govuk-!-width-one-half govuk-password-input__input govuk-js-password-input-input {%if passwordError%}govuk-input govuk-input--error{%endif%}"
+              id="password-input"
+              name="password"
+              type="password"
+              spellcheck="false"
+              autocomplete="current-password"
+              autocapitalize="none"
+            />
+            <button
+              type="button"
+              class="govuk-button govuk-button--secondary govuk-password-input__toggle govuk-js-password-input-toggle"
+              data-module="govuk-button"
+              aria-controls="password-input"
+              aria-label="Show password"
+              hidden
+            >
+              Show
+            </button>
+          </div>
         </div>
       </div>
       <p class="govuk-body">
