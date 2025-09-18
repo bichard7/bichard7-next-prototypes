@@ -95,3 +95,8 @@ router.post("/reset-password-new-password", function (request, response) {
 router.post("/reset-password-confirmation", function (request, response) {
   return response.redirect("/sign-in");
 });
+
+router.post("/reset", function (request, response) {
+  request.session.data = {};
+  return response.redirect("/sign-in");
+});
