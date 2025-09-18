@@ -12,7 +12,7 @@ router.post("/sign-in", function (request, response) {
   const { email, password } = request.body;
   const emailValid = email.indexOf("@") > -1;
   const correctEmail = "test@mail.com";
-  const correctPassword = "password";
+  const correctPassword = "bichard7";
   const correctDetails = email === correctEmail && password == correctPassword;
 
   if (correctDetails) {
