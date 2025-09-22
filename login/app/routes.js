@@ -8,11 +8,13 @@ const router = govukPrototypeKit.requests.setupRouter();
 
 // Add your routes here
 
+let correctPassword = "bichard7";
+
 router.post("/sign-in", function (request, response) {
   const { email, password } = request.body;
   const emailValid = email.indexOf("@") > -1;
   const correctEmail = "test@mail.com";
-  const correctPassword = "bichard7";
+  //const correctPassword = "bichard7";
   const correctDetails = email === correctEmail && password == correctPassword;
 
   if (correctDetails) {
@@ -87,6 +89,7 @@ router.post("/reset-password-new-password", function (request, response) {
   const isNotEmpty = newPassword != "";
 
   if (isNotEmpty && isMatch) {
+    correctPassword = newPassword;
     return response.redirect("/reset-password-confirmation");
   }
   return response.render("reset-password-new-password");
@@ -98,5 +101,6 @@ router.post("/reset-password-confirmation", function (request, response) {
 
 router.post("/reset", function (request, response) {
   request.session.data = {};
+  correctPassword = "bichard7";
   return response.redirect("/sign-in");
 });
