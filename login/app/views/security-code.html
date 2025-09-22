@@ -28,7 +28,7 @@
           <ul class="govuk-list govuk-error-summary__list">
             {%if (data['securityCode'] == "")%}
             <li>
-              <a href="#securityCode">Enter a security code </a>
+              <a href="#securityCode">Enter a security code</a>
             </li>
             {%endif%} {%if incorrectSecurityCode and not (data['securityCode']
             == "")%}
@@ -60,10 +60,10 @@
         >
         <p class="govuk-body">Enter the security code</p>
         {% if (data['securityCode'] == "")%}
-        <div class="govuk-error-message">Enter a security code.</div>
+        <div class="govuk-error-message">Enter a security code</div>
         {% endif %} {% if incorrectSecurityCode and not (data['securityCode'] ==
         "") %}
-        <div class="govuk-error-message">Incorrect security code.</div>
+        <div class="govuk-error-message">Incorrect security code</div>
         {% endif %}
 
         <input
