@@ -6,14 +6,15 @@
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag"> Beta </strong>
       <span class="govuk-phase-banner__text">
-        This is a new service -
+        This is a new service - your
         <a
           class="govuk-link"
           href="/feedback"
           rel="noreferrer noopener"
           target="_blank"
-          >your feedback will help us improve it (opens in new tab)</a
+          >feedback</a
         >
+        will help us improve it.
       </span>
     </p>
   </div>
@@ -59,15 +60,12 @@
     {%endif%}
     <h1 class="govuk-heading-l">Sign in to Bichard7</h1>
     <p class="govuk-body">
-      Sign in using your Bichard7 account email address and password.
+      To sign in you need the email address and password for your Bichard7
+      account.
     </p>
     <p class="govuk-body">
-      Your User Manager can help if you do not know your Bichard7 account email
-      address.
-    </p>
-    <p class="govuk-body">
-      If your account is recognised you will receive a security code by email to
-      complete the sign in process.
+      If your email address is registered to a Bichard7 account you will receive
+      a security code by email.
     </p>
     <form method="post" action="/sign-in" autocomplete="on" novalidate>
       <div
@@ -86,7 +84,7 @@
             >Email address</label
           >
           <div id="email-hint" class="govuk-hint">
-            Enter your Bichard7 account email address
+            Enter the email address for your Bichard7 account
           </div>
           {% if emailInvalid and not data["email"]==""%}
           <div class="govuk-error-message">
@@ -140,25 +138,27 @@
           </div>
         </div>
       </div>
-      <p class="govuk-body">
-        <a href="/reset-password" class="govuk-link govuk-link--no-underline"
-          >Forgotten password</a
-        >
-      </p>
+
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
     </form>
-    <p class="govuk-body">
-      <a
-        href="/help"
-        class="govuk-link govuk-link--no-underline govuk-!-font-weight-bold"
-        rel="noreferrer noopener"
-        target="_blank"
-      >
-        Get help with this page (opens in new tab)
-      </a>
-    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text"> Help signing in </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>
+          If you don't know your email address, contact the member of your team
+          responsible for managing Bichard7 accounts.
+        </p>
+        <p>
+          You can
+          <a class="govuk-link" href="/reset-password">change your password</a>
+          if you don't know it.
+        </p>
+      </div>
+    </details>
   </div>
 </div>
 
