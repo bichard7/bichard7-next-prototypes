@@ -2,19 +2,19 @@
 {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
-  <a href="/sign-in" class="govuk-back-link">Back</a>
   <div class="govuk-phase-banner govuk-!-margin-bottom-5">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag"> Beta </strong>
       <span class="govuk-phase-banner__text">
-        This is a new service -
+        This is a new service - your
         <a
           class="govuk-link"
           href="/feedback"
           rel="noreferrer noopener"
           target="_blank"
-          >your feedback will help us improve it (opens in new tab)</a
+          >feedback</a
         >
+        will help us improve it.
       </span>
     </p>
   </div>
@@ -42,22 +42,20 @@
     </div>
     {%endif%}
 
-    <h1 class="govuk-heading-l">Security code</h1>
+    <h1 class="govuk-heading-l">Check your email</h1>
+    <p class="govuk-body">We have sent a code to: <b>test@mail.com</b></p>
     <p class="govuk-body">
-      We have sent a one-time security code to:
-      <b>Firstname.surname@force.co.uk</b>
+      Your code can take up to 5 minutes to arrive. Check your spam folder if
+      you don't get an email.
     </p>
-    <p class="govuk-body">
-      If you haven't received a code check your spam folder or try logging in
-      again.
-    </p>
+    <p class="govuk-body">The code will expire after 30 minutes.</p>
     <form method="post" action="/security-code" autocomplete="on" novalidate>
       <div
         class="govuk-form-group {%if isError%}govuk-form-group--error{%endif%}"
       >
         <label class="govuk-label govuk-!-font-weight-bold" for="securityCode"
-          >Security Code</label
-        >
+          >Security Code
+        </label>
         <p class="govuk-body">Enter the security code</p>
         {% if (data['securityCode'] == "")%}
         <div class="govuk-error-message">Enter a security code</div>
@@ -74,10 +72,10 @@
           autocomplete="securityCode"
         />
       </div>
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Sign in
-      </button>
       <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-font-weight-bold" for="securityCode"
+          >Sign in without a code next time
+        </label>
         <div class="govuk-checkboxes__item">
           <input
             class="govuk-checkboxes__input"
@@ -86,28 +84,39 @@
             type="checkbox"
           />
           <label class="govuk-label govuk-checkboxes__label" for="skip">
-            I trust this device. Don't ask me for a code again today
+            I trust this device. I don't want to sign in with a code again
+            today.
           </label>
         </div>
         <div class="govuk-warning-text">
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-visually-hidden">Warning</span>
-            Do not select this option if you are using a public or shared device
+            Don't use this option if you are using a public or shared device.
           </strong>
         </div>
       </div>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Sign in
+      </button>
     </form>
-    <p class="govuk-body">
-      <a
-        href="/help"
-        class="govuk-link govuk-link--no-underline govuk-!-font-weight-bold"
-        rel="noreferrer noopener"
-        target="_blank"
-      >
-        Get help with this page (opens in new tab)
-      </a>
-    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Problem with the code?</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>
+          We can <a class="govuk-link" href="#">send the code again</a> or you
+          can
+          <a class="govuk-link" href="/sign-in">use a different email address</a
+          >.
+        </p>
+        <p>
+          If you don't know your email address, contact the member of your team
+          responsible for managing Bichard7 accounts.
+        </p>
+      </div>
+    </details>
   </div>
 </div>
 
